@@ -30,7 +30,7 @@ npm install
 if (-not $noserve)
 {
     "Serving"
-    ng serve
+    ng serve -o
 }
 else
 {
