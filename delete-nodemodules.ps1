@@ -3,4 +3,5 @@ param(
     [string]$path
 )
 
-Get-ChildItem -path $path -Include "node_modules" -Recurse -Directory | Remove-Item -Recurse -Force
+Get-ChildItem -path $path -Include "node_modules" -Recurse -Directory |
+Remove-Item -Recurse -Force -Verbose
