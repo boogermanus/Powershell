@@ -11,7 +11,7 @@ Push-Location $temp
 
 #match https://github.com/user/(repo) or https://github.com/user/(some-repo) or https://github.com/user/(repo2)
 #or https://github.com/user/(repo2_repo)
-$newDir = [regex]::Match($repo, "(([0-9|A-Z|a-z|-|_]*)-?)*");
+$newDir = [regex]::Match($repo, '(([0-9|A-Z|a-z|-|_]*)-?)*$')
 
 if(Test-Path $newDir)
 {
