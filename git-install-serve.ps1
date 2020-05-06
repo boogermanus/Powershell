@@ -9,9 +9,9 @@ $temp = "\code\angular\temp";
 
 Push-Location $temp
 
-#match https://github.com/user/(repo) or https://github.com/user/(some-repo) or https://github.com/user/(repo2)
-#or https://github.com/user/(repo2_repo)
-$newDir = [regex]::Match($repo, '(([0-9|A-Z|a-z|-|_]*)-?)*$')
+# this regex should match anything after the last slash in the repo url
+# e.g. http://github.com/user/repo_name -> repo_name
+$newDir = [regex]::Match($repo, '[^/]+($)')
 
 if(Test-Path $newDir)
 {
