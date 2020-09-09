@@ -27,6 +27,7 @@ Push-Location $newDir.value;
 npm install
 
 if (-not $noserve) {
+    # tried start-job/wait-job here with no luck...yet
     "Serving"
     ng serve -o
 }
