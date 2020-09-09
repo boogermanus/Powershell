@@ -1,7 +1,7 @@
 param(
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string]$repo, #a directory path
-    [Parameter(Mandatory=$false)]
+    [Parameter(Mandatory = $false)]
     [switch]$noserve
 )
 
@@ -13,8 +13,7 @@ Push-Location $temp
 # e.g. http://github.com/user/repo_name -> repo_name
 $newDir = [regex]::Match($repo, '[^/]+($)')
 
-if(Test-Path $newDir)
-{
+if (Test-Path $newDir) {
     "Removing existing clone"
     Remove-Item $newDir -Force -Recurse
 }
@@ -27,13 +26,11 @@ Push-Location $newDir.value;
 "Installing"
 npm install
 
-if (-not $noserve)
-{
+if (-not $noserve) {
     "Serving"
     ng serve -o
 }
-else
-{
+else {
     code .
 }
 
