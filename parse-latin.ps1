@@ -14,9 +14,12 @@ foreach($table in $tables)
         $line.translation = $data[1].InnerText
         $line.notes = $data[2].InnerText
         $object = New-Object PSObject -Property $line
-        $object
 
-        #  .\parse-latin.ps1 | latin.csv -NoTypeInformation
+        if($null -ne $object.notes -and $null -ne $object -and $null -ne $object) 
+        {
+            $object
+        }
+        #  .\parse-latin.ps1 | Export-CSV latin.csv -NoTypeInformation
     }
 }
 
