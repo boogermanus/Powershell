@@ -1,9 +1,8 @@
 $uri = "https://en.wikipedia.org/wiki/List_of_Latin_phrases_(full)";
-$dataLength = 2 # data length is 
 $request = Invoke-WebRequest -Uri $uri
 
 $tables = $request.ParsedHtml.body.getElementsByClassName("wikitable")
-
+#$output = @()
 foreach($table in $tables)
 {
     $rows = $table.getElementsByTagName("tr");
@@ -14,12 +13,11 @@ foreach($table in $tables)
         $line.phrase = $data[0].InnerText
         $line.translation = $data[1].InnerText
         $line.notes = $data[2].InnerText
-        
-        # debug
-        #"$($line.phrase),$($line.translation),$($line.notes)"
-        # $data | ForEach-Object { $_.InnerText }
-        
-        $line
-        
+        $object = New-Object PSObject -Property $line
+        $object
+
+        #  .\parse-latin.ps1 | latin.csv -NoTypeInformation
     }
 }
+
+#$output
