@@ -9,8 +9,17 @@ foreach($table in $tables)
     $rows = $table.getElementsByTagName("tr");
 
     foreach($row in $rows) {
+        $line = @{}
         $data = $row.getElementsByTagName("td")
-
-        $data | ForEach-Object { $_.InnerText}
+        $line.phrase = $data[0].InnerText
+        $line.translation = $data[1].InnerText
+        $line.notes = $data[2].InnerText
+        
+        # debug
+        #"$($line.phrase),$($line.translation),$($line.notes)"
+        # $data | ForEach-Object { $_.InnerText }
+        
+        $line
+        
     }
 }
