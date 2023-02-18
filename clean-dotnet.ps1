@@ -11,6 +11,6 @@ foreach($item in $items)
 {
     $status = ($i/$count) * 100
     Write-Progress -Activity "Removing files in $($item.FullName)" -PercentComplete $status
-    $item | Remove-Item -WhatIf -Recurse -Force -Verbose
+    $item | Remove-Item -WhatIf -Force -Recurse -Verbose
     $i++;
 }
