@@ -1,8 +1,8 @@
 #usage: secs -date 10/29/81 -span G
 param(
-		[Parameter()]
+		[Parameter(Mandatory=$true)]
 		[DateTime]$date,
-		[Parameter()]
+		[Parameter(Mandatory=$true)]
 		[ValidateSet("K","M","G")]
 		[string]$span
 )
