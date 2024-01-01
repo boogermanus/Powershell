@@ -35,16 +35,7 @@ Set-Alias popl pop-location
 Set-Alias eh edit-hosts
 Set-Alias paint 'c:\program files\Paint.NET\PaintDotNet.exe'
 Set-Alias sql 'C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Ssms.exe'
-Set-Alias rider 'C:\Users\jordan.woodruff\AppData\Local\JetBrains\Toolbox\apps\Rider\ch-1\223.8214.53\bin\rider64.exe'
 Set-Alias ll Get-ChildItemAll
-#Set-Alias jrnl 'C:\Python34\Scripts\jrnl.exe'
-function stop-virus {
-	Stop-Service ArelliaAgent,ArelliaACSvc
-}
-
-function start-virus {
-	Start-Service ArelliaAgent,ArelliaACSvc
-}
 
 ##########################
 # Setup Custom Functions #
@@ -128,7 +119,7 @@ function start-jobhere([scriptblock]$block)
 # Setting Custome Path   #
 ##########################
 "Setting Custom Path"
-$env:path += ';C:\Program Files\TortoiseHg;C:\Program Files\ngrok;C:\Windows\Microsoft.NET\Framework64\v4.0.30319\'
+#$env:path += ';C:\Program Files\TortoiseHg;C:\Program Files\ngrok;C:\Windows\Microsoft.NET\Framework64\v4.0.30319\'
 
 $location = get-location
 # start in c:\code by default
@@ -141,7 +132,6 @@ if($location.Path.Contains('System32') -or $location.Path.Contains('jordan.woodr
 # Stopping Services      #
 ##########################
 #"Stopping Services"
-#get-service ,where-object -property DisplayName -match "AT&T" ,stop-service
 
 ##########################
 # Mapping Drives         #
