@@ -4,33 +4,33 @@ param(
     [Parameter]
     [string]$images = 'D:\images'
 )
+$validFileTypes = [
+".jpg",
+".jpeg",
+".png",
+".tiff",
+".tiff",
+".pdf",
+".docx",
+".docm",
+".dotx",
+".doc"
+".rtf",
+".xlsx",
+".xlsb",
+".xlsm",
+".xltx",
+".xls",
+".pptx",
+".potx",
+".ppt",
+".mp4",
+".avi",
+".wmv",
+".mkv",
+".mpg",
+".mpeg"]
 
-$files = Get-ChildItem -r $path
-
-function scan([System.IO.FileInfo[]]$items) {
-    foreach($item in $items) {
-        if($item.PSIsContainer) {
-            scan-directory 
-        }
-        else {
-            if($file.Extension -eq ".zip") {
-                scan-zip $file
-            }
-            else {
-                "file $($file.FullName)"
-            }
-        }
-    }
-}
-
-function scan-directory([System.IO.FileInfo]$dir) {
-    "directory $($dir.FullName)"
-}
-
-function scan-zip([System.IO.FileInfo]$zip) {
-    "zip $($zip.FullName)"
-}
-
-function handle-file([System.IO.FileInfo]$file) {
-    "file $($file.FullName)"
+function handle-file([System.IO.FileInfo]$info) {
+    
 }
