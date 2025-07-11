@@ -2,7 +2,7 @@ $uri = "https://en.wikipedia.org/wiki/List_of_Latin_phrases_(full)";
 $request = Invoke-WebRequest -Uri $uri
 
 $tables = $request.ParsedHtml.body.getElementsByClassName("wikitable")
-#$output = @()
+
 foreach($table in $tables)
 {
     $rows = $table.getElementsByTagName("tr");
@@ -17,9 +17,8 @@ foreach($table in $tables)
 
         if($null -ne $object.notes -and $null -ne $object -and $null -ne $object) 
         {
-            $object
+            $object | ConvertTo-Json
         }
-        #  .\parse-latin.ps1 | Export-CSV latin.csv -NoTypeInformation
     }
 }
 
