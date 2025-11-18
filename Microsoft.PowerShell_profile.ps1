@@ -10,7 +10,8 @@ Clear-Host
 "Setting Properties"
 $Host.UI.RawUI.WindowTitle="Powershell - $env:computername"
 Set-PSReadlineOption -BellStyle None
-
+Set-PSReadLineKeyHandler -Chord "Tab" -Function AcceptSuggestion
+Set-PSReadLineKeyHandler -Chord "RightArrow" -Function ForwardWord
 ##########################
 #Importing Custom Modules#
 ##########################
@@ -26,16 +27,17 @@ Import-Module posh-git
 ###############
 # Set Aliases #
 ###############
-function Get-ChildItemAll { Get-ChildItem -Attributes ReadOnly,Hidden,System,Directory,Archive,Device,Normal,Temporary,SparseFile ,ReparsePoint ,Compressed ,Offline ,NotContentIndexed ,Encrypted ,IntegrityStream ,NoScrubData }
+function Get-ChildItemAll($path) { 
+Get-ChildItem -Attributes ReadOnly,Hidden,System,Directory,Archive,Device,Normal,Temporary,SparseFile ,ReparsePoint ,Compressed ,Offline ,NotContentIndexed ,Encrypted ,IntegrityStream ,NoScrubData -path $path 
+}
 "Setting Aliases"
 Set-Alias epf Edit-Profile
 Set-Alias n++ 'c:\Program Files\Notepad++\notepad++.exe'
 Set-Alias pushl push-location
 Set-Alias popl pop-location
 Set-Alias eh edit-hosts
-Set-Alias paint 'c:\program files\Paint.NET\PaintDotNet.exe'
-Set-Alias sql 'C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Ssms.exe'
 Set-Alias ll Get-ChildItemAll
+Set-Alias rider 'C:\Users\booge\AppData\Local\Programs\Rider\bin\rider64.exe'
 
 ##########################
 # Setup Custom Functions #
@@ -55,6 +57,7 @@ function stop-watch {
 function reset-watch {
 	$_stopWatch.Reset()
 }
+
 function Edit-Profile {
    n++ $profile
 }
@@ -66,7 +69,7 @@ function prompt
 	$loc = get-location
 	$drive = $loc.Path.split('\')[0]
 	$directory = $loc.Path.split('\')[$loc.Path.split('\').Length - 1]
-	$data = "PS " + $drive + ":" + $directory
+	$data = "PS " + $drive + $directory + " "
 	$data += & $GitPromptScriptBlock
 	$data
 }
@@ -116,22 +119,23 @@ function start-jobhere([scriptblock]$block)
 }
 
 ##########################
-# Setting Custome Path   #
+# Setting Custom Path    #
 ##########################
-"Setting Custom Path"
-#$env:path += ';C:\Program Files\TortoiseHg;C:\Program Files\ngrok;C:\Windows\Microsoft.NET\Framework64\v4.0.30319\'
+#"Setting Custom Path"
+#$env:path += ';C:\Program Files\'
 
 $location = get-location
 # start in c:\code by default
-if($location.Path.Contains('System32') -or $location.Path.Contains('jordan.woodruff') -or $location.Path.Contains)
-{
-	push-location c:\code
-}
+# if($location.Path.Contains('System32') -or $location.Path.Contains)
+# {
+	# push-location c:\code
+# }
 
 ##########################
 # Stopping Services      #
 ##########################
 #"Stopping Services"
+#get-service ,where-object -property DisplayName -match "AT&T" ,stop-service
 
 ##########################
 # Mapping Drives         #
