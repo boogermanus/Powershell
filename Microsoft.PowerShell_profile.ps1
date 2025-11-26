@@ -10,8 +10,9 @@ Clear-Host
 "Setting Properties"
 $Host.UI.RawUI.WindowTitle="Powershell - $env:computername"
 Set-PSReadlineOption -BellStyle None
-Set-PSReadLineKeyHandler -Chord "Tab" -Function AcceptSuggestion
+Set-PSReadLineKeyHandler -chord "tab" -function acceptsuggestion
 Set-PSReadLineKeyHandler -Chord "RightArrow" -Function ForwardWord
+Set-PSReadlineOption -PredictionViewStyle ListView
 ##########################
 #Importing Custom Modules#
 ##########################
@@ -23,6 +24,7 @@ Set-PSReadLineKeyHandler -Chord "RightArrow" -Function ForwardWord
 #add-pssnapin sqlservercmdletsnapin100
 #" -- posh-git"
 Import-Module posh-git
+Import-Module CompletionPredictor
 
 ###############
 # Set Aliases #
